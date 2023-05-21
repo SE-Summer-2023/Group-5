@@ -21,6 +21,8 @@ const PackageForm = ({ type }) => {
   const handlePackageForm = (packDetails) => {
     if (type === "Create") {
       const newPack = [...allPacks, packDetails];
+      const ids = allPacks.map((item) => item.packageId)
+      console.log(ids)
       dispatch(setAllPacks(newPack));
       navigate("/packages");
     } else if (type === "Modify") {
@@ -45,11 +47,12 @@ const PackageForm = ({ type }) => {
       packageId: (val) =>
         type === "Create"
           ? packIds.includes(val)
-            ? "Package id must be different"
-            : "null"
+            ? "Package value should be different"
+            : null
+          
           : val.length <= 0
-          ? "Cannot be zero"
-          : "null",
+            ? "Cannot be zero"
+            : null,
     },
   });
 

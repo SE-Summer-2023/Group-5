@@ -8,7 +8,6 @@ import {
 } from "./utils/firebase";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./store/slices/userSlice";
-import { setAllPacks } from "./store/slices/packsSlice";
 
 import NavigationBar from "./routes/navigation/NavigationBar";
 import Home from "./routes/home/Home";
@@ -18,20 +17,20 @@ import CreatePackage from "./routes/createPackage/CreatePackage";
 import ModifyPackage from "./routes/modifyPackage/ModifyPackage";
 
 const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChangedListener(async (user) => {
-  //     if (user) {
-  //       await createUserDocumentFromAuth(user);
-  //       const { name, email } = await getUserDocumentFromAuth(user);
-  //       dispatch(setCurrentUser({ name, email }));
-  //     } else {
-  //       dispatch(setCurrentUser(null));
-  //     }
-  //   });
-  //   return unsubscribe;
-  // }, [dispatch]);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener(async (user) => {
+      if (user) {
+        await createUserDocumentFromAuth(user);
+        const { name, email } = await getUserDocumentFromAuth(user);
+        dispatch(setCurrentUser({ name, email }));
+      } else {
+        dispatch(setCurrentUser(null));
+      }
+    });
+    return unsubscribe;
+  }, [dispatch]);
   return (
     <Routes>
       <Route path="/" element={<NavigationBar />}>

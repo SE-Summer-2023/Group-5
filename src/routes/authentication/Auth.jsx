@@ -46,7 +46,8 @@ const Auth = (props) => {
           email,
           password
         );
-        await createUserDocumentFromAuth(user, { name });
+        await createUserDocumentFromAuth(user, {name});
+        navigate("/");
       } catch (error) {
         console.log(error.code, error.message);
       }

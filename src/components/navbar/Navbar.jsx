@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import { signOutUser } from "../../utils/firebase";
 import {
   createStyles,
   Header,
@@ -84,6 +86,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Navbar = () => {
+  const user = useSelector((state) => state.user);
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const { classes, theme } = useStyles();
@@ -119,11 +122,21 @@ const Navbar = () => {
             </a>
           </Group>
 
-          <Group className={classes.hiddenMobile}>
-            <Link to={"/auth"}>
-              <Button>My Account</Button>
-            </Link>
-          </Group>
+          {user ? (
+            <Group className={classes.hiddenMobile}>
+              <Link to={"/"}>
+                <Button color="red" onClick={signOutUser}>
+                  Sign out
+                </Button>
+              </Link>
+            </Group>
+          ) : (
+            <Group className={classes.hiddenMobile}>
+              <Link to={"/auth"}>
+                <Button>My Account</Button>
+              </Link>
+            </Group>
+          )}
 
           <Burger
             opened={drawerOpened}
@@ -157,17 +170,36 @@ const Navbar = () => {
           <a href="/bookings" className={classes.link}>
             Bookings
           </a>
+          <a href="/create-package" className={classes.link}>
+            Create Package
+          </a>
+          <a href="/modify-package" className={classes.link}>
+            Modify Package
+          </a>
+          <a href="/modify-booking" className={classes.link}>
+            Modify Booking
+          </a>
 
           <Divider
             my="sm"
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
 
-          <Group position="center" grow pb="xl" px="md">
-            <Link to={"/auth"}>
-              <Button>My Account</Button>
-            </Link>
-          </Group>
+          {user ? (
+            <Group position="center" grow pb="xl" px="md">
+              <Link to={"/"}>
+                <Button color="red" onClick={signOutUser}>
+                  Sign out
+                </Button>
+              </Link>
+            </Group>
+          ) : (
+            <Group position="center" grow pb="xl" px="md">
+              <Link to={"/auth"}>
+                <Button>My Account</Button>
+              </Link>
+            </Group>
+          )}
         </ScrollArea>
       </Drawer>
     </Box>
