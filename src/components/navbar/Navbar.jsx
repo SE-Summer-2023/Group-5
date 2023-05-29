@@ -102,23 +102,35 @@ const Navbar = () => {
             spacing={0}
             className={classes.hiddenMobile}
           >
-            <a href="/" className={classes.link}>
+            <a className={classes.link}>
+              <Link to={"/"}>
               Home
+              </Link>
             </a>
-            <a href="/packages" className={classes.link}>
+            <a className={classes.link}>
+              <Link to={"/packages"}>
               Packages
+              </Link>
             </a>
-            <a href="/bookings" className={classes.link}>
+            <a className={classes.link}>
+            <Link to={"/bookings"}>
               Bookings
+              </Link>
             </a>
-            <a href="/create-package" className={classes.link}>
+            <a className={classes.link}>
+            <Link to={"/create-package"}>
               Create Package
+              </Link>
             </a>
-            <a href="/modify-package" className={classes.link}>
+            <a className={classes.link}>
+            <Link to={"/modify-package"}>
               Modify Package
+              </Link>
             </a>
-            <a href="/modify-booking" className={classes.link}>
+            <a className={classes.link}>
+            <Link to={"/modify-booking"}>
               Modify Booking
+              </Link>
             </a>
           </Group>
 
@@ -161,24 +173,36 @@ const Navbar = () => {
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
 
-          <a href="/" className={classes.link}>
-            Home
-          </a>
-          <a href="/packages" className={classes.link}>
-            Packages
-          </a>
-          <a href="/bookings" className={classes.link}>
-            Bookings
-          </a>
-          <a href="/create-package" className={classes.link}>
-            Create Package
-          </a>
-          <a href="/modify-package" className={classes.link}>
-            Modify Package
-          </a>
-          <a href="/modify-booking" className={classes.link}>
-            Modify Booking
-          </a>
+<a className={classes.link}>
+              <Link to={"/"}>
+              Home
+              </Link>
+            </a>
+            <a className={classes.link}>
+              <Link to={"/packages"}>
+              Packages
+              </Link>
+            </a>
+            <a className={classes.link}>
+            <Link to={"/bookings"}>
+              Bookings
+              </Link>
+            </a>
+            <a className={classes.link}>
+            <Link to={"/create-package"}>
+              Create Package
+              </Link>
+            </a>
+            <a className={classes.link}>
+            <Link to={"/modify-package"}>
+              Modify Package
+              </Link>
+            </a>
+            <a className={classes.link}>
+            <Link to={"/modify-booking"}>
+              Modify Booking
+              </Link>
+            </a>
 
           <Divider
             my="sm"
