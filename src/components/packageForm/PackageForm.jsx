@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAllPacks } from "../../store/slices/packsSlice";
+import { FilterPackages } from "../../utils/packagesOp";
 
 import { useForm } from "@mantine/form";
 import {
@@ -18,19 +19,33 @@ const PackageForm = ({ type }) => {
   const navigate = useNavigate();
   const { allPacks } = useSelector((state) => state.allpacks);
 
+  const packIds = allPacks.map((pack) => {
+    if (pack !== null) return pack.packageId;
+  });
+
+  const setNewPack = (filteredPack, packDetails) => {
+    const newPack = [...filteredPack, packDetails];
+    console.log(newPack);
+    dispatch(setAllPacks(newPack));
+    navigate("/packages");
+  };
+
   const handlePackageForm = (packDetails) => {
     if (type === "Create") {
       const newPack = [...allPacks, packDetails];
-      const ids = allPacks.map((item) => item.packageId)
-      console.log(ids)
       dispatch(setAllPacks(newPack));
       navigate("/packages");
     } else if (type === "Modify") {
-      console.log("Error");
+      console.log(packIds);
+      if (packIds.includes(packDetails.packageId)) {
+        const prevPack = allPacks.filter(
+          (pack) => pack.packageId === packDetails.packageId
+        );
+        const filteredPack = FilterPackages(allPacks, prevPack[0]);
+        setNewPack(filteredPack, packDetails);
+      }
     }
   };
-
-  const packIds = allPacks.map((pack) => pack.packageId);
 
   const form = useForm({
     initialValues: {
@@ -47,12 +62,11 @@ const PackageForm = ({ type }) => {
       packageId: (val) =>
         type === "Create"
           ? packIds.includes(val)
-            ? "Package value should be different"
+            ? "Package id must be different"
             : null
-          
           : val.length <= 0
-            ? "Cannot be zero"
-            : null,
+          ? "Cannot be zero"
+          : null,
     },
   });
 
