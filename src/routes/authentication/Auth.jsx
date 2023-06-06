@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToggle, upperFirst } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
+import { toast } from "react-toastify";
 import {
   TextInput,
   PasswordInput,
@@ -9,9 +11,9 @@ import {
   Group,
   Button,
   Container,
-  Checkbox,
   Anchor,
   Stack,
+  NativeSelect,
 } from "@mantine/core";
 import {
   createUserDocumentFromAuth,
@@ -21,42 +23,50 @@ import {
 
 const Auth = (props) => {
   const navigate = useNavigate();
+  const [value, setValue] = useState("");
   const [type, toggle] = useToggle(["login", "register"]);
   const form = useForm({
     initialValues: {
       email: "",
       name: "",
       password: "",
-      terms: true,
+      isAgent: {},
     },
 
     validate: {
       email: (val) => (/^\S+@\S+$/.test(val) ? null : "Invalid email"),
       password: (val) =>
-        val.length <= 6
-          ? "Password should include at least 6 characters"
+        val.length < 6 ? "Password should include at least 6 characters" : null,
+      isAgent: (val) =>
+        val.userType === "Agent"
+          ? val.pwd === "t#t#Px*8hfgQPX["
+            ? null
+            : "Error"
           : null,
     },
   });
 
-  const handleAuth = async ({ email, password, name }) => {
+  const handleAuth = async ({ email, password, name, isAgent }) => {
     if (type === "register") {
       try {
         const { user } = await createAuthUserWithEmailAndPassword(
           email,
           password
         );
-        await createUserDocumentFromAuth(user, {name});
+        const userType = isAgent.userType === undefined ? "User" : "Agent";
+        await createUserDocumentFromAuth(user, { name, userType });
+        toast.success("User Registered!");
         navigate("/");
       } catch (error) {
-        console.log(error.code, error.message);
+        toast.error(`${error.code} \n ${error.message}`);
       }
     } else if (type === "login") {
       try {
         await signInUserWithEmailandPassword(email, password);
+        toast.success("Login Successful!");
         navigate("/");
       } catch (error) {
-        console.log(error.code, error.message);
+        toast.error(`${error.code} \n ${error.message}`);
       }
     }
   };
@@ -117,13 +127,24 @@ const Auth = (props) => {
             />
 
             {type === "register" && (
-              <Checkbox
-                label="I accept terms and conditions"
-                checked={form.values.terms}
-                onChange={(event) =>
-                  form.setFieldValue("terms", event.currentTarget.checked)
-                }
-              />
+              <>
+                <NativeSelect
+                  required
+                  withAsterisk
+                  label="Select user type"
+                  description="If agent, enter secret key as password"
+                  value={value}
+                  onChange={(event) => {
+                    setValue(event.currentTarget.value);
+                    form.setFieldValue("isAgent", {
+                      userType: event.currentTarget.value,
+                      pwd: form.values.password,
+                    });
+                  }}
+                  data={["User", "Agent"]}
+                  error={form.errors.isAgent && "Secret key doesn't match"}
+                />
+              </>
             )}
           </Stack>
 

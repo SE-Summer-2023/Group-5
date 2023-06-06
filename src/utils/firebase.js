@@ -6,7 +6,16 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  getDoc,
+  setDoc,
+  doc,
+  getDocs,
+  collection,
+  updateDoc,
+  deleteField,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBsA5K7TkU36wFPUcWEU7gvue1BKC0sBVM",
@@ -20,6 +29,57 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
+
+export const createUserBooking = async (bookingInfo, userId) => {
+  const bookingDocRef = doc(db, "bookings", userId);
+  const bookingSnapshot = await getDoc(bookingDocRef);
+    if(bookingSnapshot.data() === undefined) {
+      try{
+        Object.values(bookingInfo).map(async (booking) => {
+          await setDoc(bookingDocRef, {
+            [`${booking.packageId}`]: booking,
+          });
+        });
+      } catch (error) {
+        console.log(error)
+      }
+    } else if(bookingSnapshot.exists()) {
+      try {
+        Object.values(bookingInfo).map(async (booking) => {
+          await updateDoc(bookingDocRef, {
+            [`${booking.packageId}`]: booking,
+          });
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+};
+
+export const getUserBookings = async () => {
+  const bookingsDocRef = collection(db, "bookings");
+  const bookingsSnapshot = await getDocs(bookingsDocRef);
+  const bookingsData = bookingsSnapshot.docs.map((doc) => ({
+    ...doc.data(),
+  }));
+  return bookingsData;
+};
+
+export const getUserDetails = async (userId) => {
+  const userRef = doc(db, "users", userId);
+  const userSnapshot = await getDoc(userRef);
+  if (userSnapshot.exists()) {
+    const userData = { ...userSnapshot.data() };
+    return userData;
+  }
+};
+
+export const deleteUserBooking = async (uid, index) => {
+  const userBookingRef = doc(db, "bookings", uid);
+  await updateDoc(userBookingRef, {
+    [`${index}`]: deleteField(),
+  });
+};
 
 export const createUserDocumentFromAuth = async (
   userAuth,
@@ -49,7 +109,8 @@ export const getUserDocumentFromAuth = async (userAuth) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
   if (userSnapshot.exists()) {
-    return userSnapshot.data();
+    const userData = { ...userSnapshot.data(), id: userAuth.uid };
+    return userData;
   }
 };
 

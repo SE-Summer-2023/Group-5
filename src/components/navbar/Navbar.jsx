@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { signOutUser } from "../../utils/firebase";
+import CartIcon from "../cartIcon/CartIcon";
 import {
   createStyles,
   Header,
@@ -95,43 +96,48 @@ const Navbar = () => {
     <Box>
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: "100%" }}>
-          <Image src={"./imgs/logo.png"} width={"200px"} />
+          <Link to={"/"}>
+            <Image src={"./imgs/logo.png"} width={"200px"} />
+          </Link>
 
           <Group
             sx={{ height: "100%" }}
             spacing={0}
             className={classes.hiddenMobile}
           >
-            <a className={classes.link}>
-              <Link to={"/"}>
+            <a href="/" className={classes.link}>
               Home
-              </Link>
             </a>
-            <a className={classes.link}>
-              <Link to={"/packages"}>
+            <a href="/packages" className={classes.link}>
               Packages
-              </Link>
             </a>
-            <a className={classes.link}>
-            <Link to={"/bookings"}>
-              Bookings
-              </Link>
-            </a>
-            <a className={classes.link}>
-            <Link to={"/create-package"}>
-              Create Package
-              </Link>
-            </a>
-            <a className={classes.link}>
-            <Link to={"/modify-package"}>
-              Modify Package
-              </Link>
-            </a>
-            <a className={classes.link}>
-            <Link to={"/modify-booking"}>
-              Modify Booking
-              </Link>
-            </a>
+            {user !== null && user.userType === "Agent" ? (
+              <>
+                <a href="/all-bookings" className={classes.link}>
+                  Client Bookings
+                </a>
+                <a href="/create-package" className={classes.link}>
+                  Create Package
+                </a>
+                <a href="/modify-package" className={classes.link}>
+                  Modify Package
+                </a>
+                <a href="/modify-booking" className={classes.link}>
+                  Modify Booking
+                </a>
+              </>
+            ) : (
+              <>
+                <a href="/custom-package" className={classes.link}>
+                  Create Custom Package
+                </a>
+                {user && (
+                  <a href="/my-bookings" className={classes.link}>
+                    My Bookings
+                  </a>
+                )}
+              </>
+            )}
           </Group>
 
           {user ? (
@@ -141,20 +147,26 @@ const Navbar = () => {
                   Sign out
                 </Button>
               </Link>
+              {user !== null && user.userType !== "Agent" ? (
+                <CartIcon />
+              ) : (
+                <></>
+              )}
             </Group>
           ) : (
             <Group className={classes.hiddenMobile}>
               <Link to={"/auth"}>
-                <Button>My Account</Button>
+                <Button>Login</Button>
               </Link>
+              <CartIcon />
             </Group>
           )}
 
-          <Burger
-            opened={drawerOpened}
-            onClick={toggleDrawer}
-            className={classes.hiddenDesktop}
-          />
+          <Group className={classes.hiddenDesktop}>
+            {user !== null && user.userType !== "Agent" ? <CartIcon /> : <></>}
+
+            <Burger opened={drawerOpened} onClick={toggleDrawer} />
+          </Group>
         </Group>
       </Header>
 
@@ -173,36 +185,39 @@ const Navbar = () => {
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
 
-<a className={classes.link}>
-              <Link to={"/"}>
-              Home
-              </Link>
-            </a>
-            <a className={classes.link}>
-              <Link to={"/packages"}>
-              Packages
-              </Link>
-            </a>
-            <a className={classes.link}>
-            <Link to={"/bookings"}>
-              Bookings
-              </Link>
-            </a>
-            <a className={classes.link}>
-            <Link to={"/create-package"}>
-              Create Package
-              </Link>
-            </a>
-            <a className={classes.link}>
-            <Link to={"/modify-package"}>
-              Modify Package
-              </Link>
-            </a>
-            <a className={classes.link}>
-            <Link to={"/modify-booking"}>
-              Modify Booking
-              </Link>
-            </a>
+          <a href="/" className={classes.link}>
+            Home
+          </a>
+          <a href="/packages" className={classes.link}>
+            Packages
+          </a>
+          {user !== null && user.userType === "Agent" ? (
+            <>
+              <a href="/all-bookings" className={classes.link}>
+                Client Bookings
+              </a>
+              <a href="/create-package" className={classes.link}>
+                Create Package
+              </a>
+              <a href="/modify-package" className={classes.link}>
+                Modify Package
+              </a>
+              <a href="/modify-booking" className={classes.link}>
+                Modify Booking
+              </a>
+            </>
+          ) : (
+            <>
+              <a href="/custom-package" className={classes.link}>
+                Create Custom Package
+              </a>
+              {user && (
+                <a href="/my-bookings" className={classes.link}>
+                  My Bookings
+                </a>
+              )}
+            </>
+          )}
 
           <Divider
             my="sm"
@@ -220,7 +235,7 @@ const Navbar = () => {
           ) : (
             <Group position="center" grow pb="xl" px="md">
               <Link to={"/auth"}>
-                <Button>My Account</Button>
+                <Button>Login</Button>
               </Link>
             </Group>
           )}

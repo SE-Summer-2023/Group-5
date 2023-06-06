@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Grid, Container } from "@mantine/core";
-
+import { Grid, Container, Button } from "@mantine/core";
+import ScrollToTop from "react-scroll-up";
 import PackageCard from "../../components/packageCard/PackageCard";
 import SearchBar from "../../components/searchBar/SearchBar";
+import { IconArrowUp } from "@tabler/icons-react";
 
 const Packages = () => {
   const [searchText, setSearchText] = useState("");
@@ -42,16 +43,7 @@ const Packages = () => {
           <>
             {filteredPackages.map((item) => (
               <Grid.Col lg={3} md={4} sm={5} key={item.packageId}>
-                <PackageCard
-                  key={item.packageId}
-                  packageName={item.packageName}
-                  packageDuration={item.packageDuration}
-                  flightDetails={item.flightDetails}
-                  country={item.country}
-                  stayDetails={item.stayDetails}
-                  activities={item.activities}
-                  packagePrice={item.packagePrice}
-                />
+                <PackageCard packageInfo={item} />
               </Grid.Col>
             ))}
           </>
@@ -59,21 +51,17 @@ const Packages = () => {
           <>
             {allPacks.map((item) => (
               <Grid.Col lg={4} md={4} sm={5} key={item.packageId}>
-                <PackageCard
-                  key={item.packageId}
-                  packageName={item.packageName}
-                  packageDuration={item.packageDuration}
-                  flightDetails={item.flightDetails}
-                  country={item.country}
-                  stayDetails={item.stayDetails}
-                  activities={item.activities}
-                  packagePrice={item.packagePrice}
-                />
+                <PackageCard packageInfo={item} />
               </Grid.Col>
             ))}
           </>
         )}
       </Grid>
+      <ScrollToTop showUnder={160}>
+        <Button radius="xl" variant="light">
+          <IconArrowUp />
+        </Button>
+      </ScrollToTop>
     </Container>
   );
 };

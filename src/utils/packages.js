@@ -7,7 +7,7 @@ const AllPackages = [
     stayDetails: "Hilton Hotel and Resort",
     country: "Los Angeles, USA",
     activities: ["hiking", "surfing", "meals"],
-    packagePrice: "$ 250",
+    packagePrice: "250",
   },
   {
     packageId: "2",
@@ -17,7 +17,7 @@ const AllPackages = [
     stayDetails: "Casa Ritual",
     country: "Margerita, Venezuela",
     activities: ["hiking", "camping", "meals"],
-    packagePrice: "$ 200",
+    packagePrice: "200",
   },
   {
     packageId: "3",
@@ -27,7 +27,7 @@ const AllPackages = [
     stayDetails: "Ramada by Wyndham",
     country: "Abbotsford, Canada",
     activities: ["horse ride", "fishing", "meals"],
-    packagePrice: "$ 300",
+    packagePrice: "300",
   },
   {
     packageId: "4",
@@ -37,7 +37,7 @@ const AllPackages = [
     stayDetails: "Guam Plaza Resort",
     country: "Guam, Guam",
     activities: ["fishing", "surfing", "meals"],
-    packagePrice: "$ 300",
+    packagePrice: "300",
   },
   {
     packageId: "5",
@@ -47,7 +47,7 @@ const AllPackages = [
     stayDetails: "New Smyrna Beach Hotels",
     country: " New Smyrna Beach, USA",
     activities: ["hike", "fishing", "surf", "meals"],
-    packagePrice: "$ 400",
+    packagePrice: "400",
   },
   {
     packageId: "6",
@@ -57,7 +57,7 @@ const AllPackages = [
     stayDetails: "Hilton Clark Sun Valley Resort",
     country: "Angeles, Philippines",
     activities: ["hiking", "meals"],
-    packagePrice: "$ 450",
+    packagePrice: "450",
   },
   {
     packageId: "7",
@@ -67,7 +67,7 @@ const AllPackages = [
     stayDetails: "Allobroges Park Hotel",
     country: "New York, USA",
     activities: ["meals"],
-    packagePrice: "$ 500",
+    packagePrice: "500",
   },
   {
     packageId: "8",
@@ -77,7 +77,7 @@ const AllPackages = [
     stayDetails: "Sheraton Annaba Hotel",
     country: "Annaba, Algeria",
     activities: ["hiking", "camping", "surfing", "meals"],
-    packagePrice: "$ 600",
+    packagePrice: "600",
   },
   {
     packageId: "9",
@@ -87,7 +87,7 @@ const AllPackages = [
     stayDetails: "Aenos Hotel",
     country: "Island of Kefalonia, Greece",
     activities: ["hike", "fishing", "meals"],
-    packagePrice: "$ 500",
+    packagePrice: "500",
   },
   {
     packageId: "10",
@@ -97,7 +97,7 @@ const AllPackages = [
     stayDetails: "Little Polynesian Resort",
     country: "Rarotonga, Cook Islands",
     activities: ["hiking", "surfing", "meals"],
-    packagePrice: "$ 650",
+    packagePrice: "650",
   },
   {
     packageId: "11",
@@ -107,7 +107,7 @@ const AllPackages = [
     stayDetails: "Dreamland Golf Hotel",
     country: "Baku, Azerbaijan",
     activities: ["rafting", "meals"],
-    packagePrice: "$ 700",
+    packagePrice: "700",
   },
   {
     packageId: "12",
@@ -117,7 +117,7 @@ const AllPackages = [
     stayDetails: "Arebbush Travel Lodge",
     country: "Windhoek, Namibia",
     activities: ["surfing", "meals"],
-    packagePrice: "$ 700",
+    packagePrice: "700",
   },
   {
     packageId: "13",
@@ -127,7 +127,7 @@ const AllPackages = [
     stayDetails: "Lagoon Prime Hotel",
     country: "Belo Horizonte, Brazil",
     activities: ["hiking", "meals"],
-    packagePrice: "$ 450",
+    packagePrice: "450",
   },
   {
     packageId: "14",
@@ -137,7 +137,7 @@ const AllPackages = [
     stayDetails: "Brentwood Inn & Garden",
     country: "Farmington, USA",
     activities: ["meals"],
-    packagePrice: "$ 500",
+    packagePrice: "500",
   },
   {
     packageId: "15",
@@ -147,7 +147,7 @@ const AllPackages = [
     stayDetails: "Viva Hotel",
     country: "Bishkek, Kyrgyzstan",
     activities: ["hiking", "meals"],
-    packagePrice: "$ 600",
+    packagePrice: "600",
   },
   {
     packageId: "16",
@@ -157,7 +157,7 @@ const AllPackages = [
     stayDetails: "Royal Exchange Hotel",
     country: "Broken Hill, Australia",
     activities: ["hiking", "meals"],
-    packagePrice: "$ 800",
+    packagePrice: "800",
   },
   {
     packageId: "17",
@@ -167,7 +167,7 @@ const AllPackages = [
     stayDetails: "Crowne Plaza Bucharest",
     country: "Bucharest, Romania",
     activities: ["meals"],
-    packagePrice: "$ 700",
+    packagePrice: "700",
   },
   {
     packageId: "18",
@@ -177,7 +177,7 @@ const AllPackages = [
     stayDetails: "Air Sky Hotel",
     country: "BuSan, South Korea",
     activities: ["hiking", "boating", "meals"],
-    packagePrice: "$ 1000",
+    packagePrice: "1000",
   },
   {
     packageId: "19",
@@ -187,7 +187,7 @@ const AllPackages = [
     stayDetails: "Hotel Royal Elim Internacional",
     country: "Cali, Colombia",
     activities: ["hiking", "meals"],
-    packagePrice: "$ 950",
+    packagePrice: "950",
   },
   {
     packageId: "20",
@@ -197,7 +197,7 @@ const AllPackages = [
     stayDetails: "Villa Beach Cottages",
     country: "Castries, Saint Lucia",
     activities: ["boating", "meals"],
-    packagePrice: "$ 1200",
+    packagePrice: "1200",
   },
   {
     packageId: "21",
@@ -207,7 +207,7 @@ const AllPackages = [
     stayDetails: "Hotel Calimera",
     country: "St. Thomas, Virgin Islands",
     activities: ["camping", "surfing", "meals"],
-    packagePrice: "$ 1050",
+    packagePrice: "1050",
   },
   {
     packageId: "22",
@@ -217,7 +217,7 @@ const AllPackages = [
     stayDetails: "Wyndham Chicago O'Hare",
     country: "Chicago, USA",
     activities: ["meals"],
-    packagePrice: "$ 1150",
+    packagePrice: "1150",
   },
   {
     packageId: "23",
@@ -227,7 +227,7 @@ const AllPackages = [
     stayDetails: "Hotel Salzburgo",
     country: "Chita, Russia",
     activities: ["meals"],
-    packagePrice: "$ 950",
+    packagePrice: "950",
   },
   {
     packageId: "24",
@@ -237,7 +237,7 @@ const AllPackages = [
     stayDetails: "Dana Rayhaan by Rotana",
     country: "Damascus, Saudi Arabien",
     activities: ["meals"],
-    packagePrice: "$ 1250",
+    packagePrice: "1250",
   },
   {
     packageId: "25",
@@ -247,7 +247,7 @@ const AllPackages = [
     stayDetails: "Kooters Vacation Rentals",
     country: "New York city, USA",
     activities: ["meals"],
-    packagePrice: "$ 1350",
+    packagePrice: "1350",
   },
   {
     packageId: "26",
@@ -257,7 +257,7 @@ const AllPackages = [
     stayDetails: "St Christopher's Hotel",
     country: "Deer Lake, Canada",
     activities: ["hiking", "meals"],
-    packagePrice: "$ 1400",
+    packagePrice: "1400",
   },
   {
     packageId: "27",
@@ -267,7 +267,7 @@ const AllPackages = [
     stayDetails: "Atlantic Hotel",
     country: "Balbala, Djibouti",
     activities: ["meals"],
-    packagePrice: "$ 1500",
+    packagePrice: "1500",
   },
   {
     packageId: "28",
@@ -277,7 +277,7 @@ const AllPackages = [
     stayDetails: "Premier Hotel Regent",
     country: "East London, South Africa",
     activities: ["boating", "meals"],
-    packagePrice: "$ 850",
+    packagePrice: "850",
   },
   {
     packageId: "29",
@@ -287,7 +287,7 @@ const AllPackages = [
     stayDetails: "Chateau Motel",
     country: "Edmonton, Canada",
     activities: ["hiking", "meals"],
-    packagePrice: "$ 1550",
+    packagePrice: "1550",
   },
   {
     packageId: "30",
@@ -297,7 +297,7 @@ const AllPackages = [
     stayDetails: "Grand Palace Hotel & Spa",
     country: "Yekaterinburg, Russia",
     activities: ["meals"],
-    packagePrice: "$ 650",
+    packagePrice: "650",
   },
 ];
 

@@ -13,15 +13,18 @@ import storage from "redux-persist/lib/storage";
 
 import packsSlice from "./slices/packsSlice";
 import userSlice from "./slices/userSlice";
+import cartSlice from "./slices/cartSlice";
 
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["user"],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {
   allpacks: packsSlice,
   user: userSlice,
+  cartDetails: cartSlice,
 });
 
 const store = configureStore({

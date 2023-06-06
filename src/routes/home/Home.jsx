@@ -112,7 +112,7 @@ const Home = () => {
 
             <Text className={classes.description} mt={30}>
               A travel application to browse and book touristic packages – Users
-              can create their own package, Admin can cancel and modify the user
+              can create their own package, Agent can cancel and modify the user
               bookings
             </Text>
 
