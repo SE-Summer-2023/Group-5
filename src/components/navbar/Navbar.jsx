@@ -106,34 +106,31 @@ const Navbar = () => {
             className={classes.hiddenMobile}
           >
             <a href="/" className={classes.link}>
-              Home
+              <Link to={"/"}>Home</Link>
             </a>
             <a href="/packages" className={classes.link}>
-              Packages
+              <Link to={"/packages"}>Packages</Link>
             </a>
             {user !== null && user.userType === "Agent" ? (
               <>
                 <a href="/all-bookings" className={classes.link}>
-                  Client Bookings
+                  <Link to={"/all-bookings"}>Client Bookings</Link>
                 </a>
                 <a href="/create-package" className={classes.link}>
-                  Create Package
+                  <Link to={"/create-package"}>Create Package</Link>
                 </a>
                 <a href="/modify-package" className={classes.link}>
-                  Modify Package
-                </a>
-                <a href="/modify-booking" className={classes.link}>
-                  Modify Booking
+                  <Link to={"/modify-package"}>Modify Package</Link>
                 </a>
               </>
             ) : (
               <>
                 <a href="/custom-package" className={classes.link}>
-                  Create Custom Package
+                  <Link to={"/custom-package"}>Create Custom Package</Link>
                 </a>
                 {user && (
                   <a href="/my-bookings" className={classes.link}>
-                    My Bookings
+                    <Link to={"/my-bookings"}>My Bookings</Link>
                   </a>
                 )}
               </>
@@ -186,34 +183,31 @@ const Navbar = () => {
           />
 
           <a href="/" className={classes.link}>
-            Home
+            <Link to={"/"}>Home</Link>
           </a>
           <a href="/packages" className={classes.link}>
-            Packages
+            <Link to={"/packages"}>Packages</Link>
           </a>
           {user !== null && user.userType === "Agent" ? (
             <>
               <a href="/all-bookings" className={classes.link}>
-                Client Bookings
+                <Link to={"/all-bookings"}>Client Bookings</Link>
               </a>
               <a href="/create-package" className={classes.link}>
-                Create Package
+                <Link to={"/create-package"}>Create Package</Link>
               </a>
               <a href="/modify-package" className={classes.link}>
-                Modify Package
-              </a>
-              <a href="/modify-booking" className={classes.link}>
-                Modify Booking
+                <Link to={"/modify-package"}>Modify Package</Link>
               </a>
             </>
           ) : (
             <>
               <a href="/custom-package" className={classes.link}>
-                Create Custom Package
+                <Link to={"/custom-package"}>Create Custom Package</Link>
               </a>
               {user && (
                 <a href="/my-bookings" className={classes.link}>
-                  My Bookings
+                  <Link to={"/my-bookings"}>My Bookings</Link>
                 </a>
               )}
             </>
