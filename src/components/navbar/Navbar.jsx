@@ -105,33 +105,38 @@ const Navbar = () => {
             spacing={0}
             className={classes.hiddenMobile}
           >
-            <a href="/" className={classes.link}>
-              <Link to={"/"}>Home</Link>
-            </a>
-            <a href="/packages" className={classes.link}>
-              <Link to={"/packages"}>Packages</Link>
-            </a>
+            <Link to={"/"} className={classes.link}>
+              Home
+            </Link>
+
+            <Link to={"/packages"} className={classes.link}>
+              Packages
+            </Link>
+
             {user !== null && user.userType === "Agent" ? (
               <>
-                <a href="/all-bookings" className={classes.link}>
-                  <Link to={"/all-bookings"}>Client Bookings</Link>
-                </a>
-                <a href="/create-package" className={classes.link}>
-                  <Link to={"/create-package"}>Create Package</Link>
-                </a>
-                <a href="/modify-package" className={classes.link}>
-                  <Link to={"/modify-package"}>Modify Package</Link>
-                </a>
+                <Link to={"/all-bookings"} className={classes.link}>
+                  Client Bookings
+                </Link>
+
+                <Link to={"/create-package"} className={classes.link}>
+                  Create Package
+                </Link>
+
+                <Link to={"/modify-package"} className={classes.link}>
+                  Modify Package
+                </Link>
               </>
             ) : (
               <>
-                <a href="/custom-package" className={classes.link}>
-                  <Link to={"/custom-package"}>Create Custom Package</Link>
-                </a>
+                <Link to={"/custom-package"} className={classes.link}>
+                  Create Custom Package
+                </Link>
+
                 {user && (
-                  <a href="/my-bookings" className={classes.link}>
-                    <Link to={"/my-bookings"}>My Bookings</Link>
-                  </a>
+                  <Link to={"/my-bookings"} className={classes.link}>
+                    My Bookings
+                  </Link>
                 )}
               </>
             )}
@@ -182,33 +187,38 @@ const Navbar = () => {
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
 
-          <a href="/" className={classes.link}>
-            <Link to={"/"}>Home</Link>
-          </a>
-          <a href="/packages" className={classes.link}>
-            <Link to={"/packages"}>Packages</Link>
-          </a>
+          <Link to={"/"} className={classes.link}>
+            Home
+          </Link>
+
+          <Link to={"/packages"} className={classes.link}>
+            Packages
+          </Link>
+
           {user !== null && user.userType === "Agent" ? (
             <>
-              <a href="/all-bookings" className={classes.link}>
-                <Link to={"/all-bookings"}>Client Bookings</Link>
-              </a>
-              <a href="/create-package" className={classes.link}>
-                <Link to={"/create-package"}>Create Package</Link>
-              </a>
-              <a href="/modify-package" className={classes.link}>
-                <Link to={"/modify-package"}>Modify Package</Link>
-              </a>
+              <Link to={"/all-bookings"} className={classes.link}>
+                Client Bookings
+              </Link>
+
+              <Link to={"/create-package"} className={classes.link}>
+                Create Package
+              </Link>
+
+              <Link to={"/modify-package"} className={classes.link}>
+                Modify Package
+              </Link>
             </>
           ) : (
             <>
-              <a href="/custom-package" className={classes.link}>
-                <Link to={"/custom-package"}>Create Custom Package</Link>
-              </a>
+              <Link to={"/custom-package"} className={classes.link}>
+                Create Custom Package
+              </Link>
+
               {user && (
-                <a href="/my-bookings" className={classes.link}>
-                  <Link to={"/my-bookings"}>My Bookings</Link>
-                </a>
+                <Link to={"/my-bookings"} className={classes.link}>
+                  My Bookings
+                </Link>
               )}
             </>
           )}
