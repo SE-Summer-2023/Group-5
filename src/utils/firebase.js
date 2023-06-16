@@ -33,27 +33,27 @@ export const db = getFirestore(firebaseApp);
 export const createUserBooking = async (bookingInfo, userId) => {
   const bookingDocRef = doc(db, "bookings", userId);
   const bookingSnapshot = await getDoc(bookingDocRef);
-    if(bookingSnapshot.data() === undefined) {
-      try{
-        Object.values(bookingInfo).map(async (booking) => {
-          await setDoc(bookingDocRef, {
-            [`${booking.packageId}`]: booking,
-          });
+  if (bookingSnapshot.data() === undefined) {
+    try {
+      Object.values(bookingInfo).map(async (booking) => {
+        await setDoc(bookingDocRef, {
+          [`${booking.packageId}`]: booking,
         });
-      } catch (error) {
-        console.log(error)
-      }
-    } else if(bookingSnapshot.exists()) {
-      try {
-        Object.values(bookingInfo).map(async (booking) => {
-          await updateDoc(bookingDocRef, {
-            [`${booking.packageId}`]: booking,
-          });
-        });
-      } catch (error) {
-        console.log(error);
-      }
+      });
+    } catch (error) {
+      console.log(error);
     }
+  } else if (bookingSnapshot.exists()) {
+    try {
+      Object.values(bookingInfo).map(async (booking) => {
+        await updateDoc(bookingDocRef, {
+          [`${booking.packageId}`]: booking,
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
 
 export const getUserBookings = async () => {

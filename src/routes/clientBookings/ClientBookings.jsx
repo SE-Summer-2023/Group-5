@@ -1,7 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Container, Text, createStyles, rem } from "@mantine/core";
-import BookingItem from "../../components/bookingItem/BookingItem";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setBookingChartData } from "../../store/slices/packsSlice";
+import { Container, Text, createStyles, rem, Group } from "@mantine/core";
+import BookingItem from "../../components/bookingItem/BookingItem";
+import { PieChart, Pie, Tooltip } from "recharts";
 
 const useStyles = createStyles((theme) => ({
   pageTitle: {
@@ -14,21 +17,55 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 const ClientBookings = () => {
-  const { bookings } = useSelector((state) => state.allpacks);
-  const { classes } = useStyles();
+  const { bookings, bookingsChartData } = useSelector(
+    (state) => state.allpacks
+  );
   const dispatch = useDispatch();
+  const convertObjectToArray = (obj) => {
+    return Object.entries(obj).map(([name, value]) => ({ name, value }));
+  };
+
+  useEffect(() => {
+    const calcQuantity = () => {
+      const quantities = {};
+      bookings.forEach((obj) => {
+        const allBookingItems = Object.values(obj);
+        allBookingItems.forEach((bookObj) => {
+          const packageName = bookObj.packageName;
+          if (quantities[packageName]) {
+            quantities[packageName]++;
+          } else {
+            quantities[packageName] = 1;
+          }
+        });
+      });
+      dispatch(setBookingChartData(convertObjectToArray(quantities)));
+    };
+    calcQuantity();
+  }, [bookings, dispatch]);
+
+  const { classes } = useStyles();
   return (
-    <Container>
+    <Container pb={rem(40)}>
       <Text className={classes.pageTitle} fw="bold">
         Client Bookings
       </Text>
+      <Group position="center">
+        <PieChart width={250} height={250}>
+          <Pie
+            dataKey="value"
+            data={bookingsChartData}
+            cx="50%"
+            cy="50%"
+            outerRadius={80}
+            fill="#82ca9d"
+            label
+          />
+          <Tooltip />
+        </PieChart>
+      </Group>
       {bookings.map((booking, index) => {
         const allBookingItems = Object.values(booking);
-        const bookingsObject = allBookingItems.map((item) => ({
-          packageId: item.packageId,
-          packageName: item.packageName,
-        }));
-        // dispatch(setBookingChartData(bookingsObject));
         return <BookingItem data={allBookingItems} key={index} />;
       })}
     </Container>

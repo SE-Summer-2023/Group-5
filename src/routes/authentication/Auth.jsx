@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 import {
   TextInput,
   PasswordInput,
-  Text,
   Paper,
   Group,
   Button,
   Container,
   Anchor,
   Stack,
+  Title,
   NativeSelect,
 } from "@mantine/core";
 import {
@@ -74,12 +74,18 @@ const Auth = (props) => {
   return (
     <Container size={450} my={40}>
       <Paper radius="md" p="xl" withBorder {...props}>
-        <Text size="xl" weight={500} align="center">
+        <Title
+          align="center"
+          sx={(theme) => ({
+            fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+            fontWeight: 800,
+          })}
+        >
           Welcome to Concordia Travel
-        </Text>
-        <Text mt={20} size="lg" weight={600} align="center">
+        </Title>
+        <Title order={3} mt={20} fw={650} align="center">
           {type.toUpperCase()}
-        </Text>
+        </Title>
 
         <form
           onSubmit={form.onSubmit((values) => {

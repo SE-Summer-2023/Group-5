@@ -13,9 +13,16 @@ import {
   ScrollArea,
   Image,
   rem,
+  Menu,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
+import {
+  IconChevronDown,
+  IconPlus,
+  IconPencil,
+  IconCards,
+} from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -109,22 +116,44 @@ const Navbar = () => {
               Home
             </Link>
 
-            <Link to={"/packages"} className={classes.link}>
-              Packages
-            </Link>
-
+            {user !== null && user.userType === "Agent" ? (
+              <Menu trigger="hover" openDelay={100} closeDelay={300}>
+                <Menu.Target>
+                  <Group className={classes.link}>
+                    Packages
+                    <IconChevronDown size={14} />
+                  </Group>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item icon={<IconCards size={14} />}>
+                    <Link to={"/packages"} className={classes.link}>
+                      All Packages
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item icon={<IconPlus size={14} />}>
+                    <Link to={"/create-package"} className={classes.link}>
+                      Create Package
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item icon={<IconPencil size={14} />}>
+                    <Link to={"/modify-package"} className={classes.link}>
+                      Modify Package
+                    </Link>
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+            ) : (
+              <Link to={"/packages"} className={classes.link}>
+                All Packages
+              </Link>
+            )}
             {user !== null && user.userType === "Agent" ? (
               <>
                 <Link to={"/all-bookings"} className={classes.link}>
                   Client Bookings
                 </Link>
-
-                <Link to={"/create-package"} className={classes.link}>
-                  Create Package
-                </Link>
-
-                <Link to={"/modify-package"} className={classes.link}>
-                  Modify Package
+                <Link to={"/revenue-reports"} className={classes.link}>
+                  Revenue Reports
                 </Link>
               </>
             ) : (
@@ -194,7 +223,6 @@ const Navbar = () => {
           <Link to={"/packages"} className={classes.link}>
             Packages
           </Link>
-
           {user !== null && user.userType === "Agent" ? (
             <>
               <Link to={"/all-bookings"} className={classes.link}>
@@ -207,6 +235,10 @@ const Navbar = () => {
 
               <Link to={"/modify-package"} className={classes.link}>
                 Modify Package
+              </Link>
+
+              <Link to={"/revenue-reports"} className={classes.link}>
+                Revenue Reports
               </Link>
             </>
           ) : (

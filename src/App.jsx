@@ -10,7 +10,10 @@ import {
 } from "./utils/firebase";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./store/slices/userSlice";
-import { setAllBookings, setBookingChartData } from "./store/slices/packsSlice";
+import {
+  setAllBookings,
+  setCurrentUserBookings,
+} from "./store/slices/packsSlice";
 
 import NavigationBar from "./routes/navigation/NavigationBar";
 import Home from "./routes/home/Home";
@@ -19,6 +22,9 @@ import Auth from "./routes/authentication/Auth";
 import CreatePackage from "./routes/createPackage/CreatePackage";
 import ModifyPackage from "./routes/modifyPackage/ModifyPackage";
 import ClientBookings from "./routes/clientBookings/ClientBookings";
+import RevenueReports from "./routes/revenueReports/RevenueReports";
+import MyBookings from "./routes/myBookings/MyBookings";
+import CustomPackage from "./routes/customPackage/CustomPackage";
 import Cart from "./routes/cart/Cart";
 
 const App = () => {
@@ -34,14 +40,18 @@ const App = () => {
         if (userType === "Agent") {
           const bookings = await getUserBookings();
           dispatch(setAllBookings(bookings));
-          // bookings.map((booking) => {
-          //   const allBookingItems = Object.values(booking);
-          //   const bookingsObject = allBookingItems.map((item) => ({
-          //     packageId: item.packageId,
-          //     packageName: item.packageName,
-          //   }));
-            // dispatch(setBookingChartData(bookingsObject));
-          // });
+        } else if (userType === "User") {
+          const bookings = await getUserBookings();
+          const currUserBookings = [];
+          bookings.forEach((booking) => {
+            const allBookingItems = Object.values(booking);
+            allBookingItems.map((bookItem) => {
+              if (bookItem.userId === id) currUserBookings.push(bookItem);
+            });
+          });
+          currUserBookings.length !== 0
+            ? dispatch(setCurrentUserBookings(currUserBookings))
+            : "";
         }
         dispatch(setCurrentUser({ name, email, userType, id }));
       } else {
@@ -49,7 +59,7 @@ const App = () => {
       }
     });
     return unsubscribe;
-  }, [dispatch]);
+  });
 
   return (
     <>
@@ -62,6 +72,9 @@ const App = () => {
           <Route path="/modify-package" element={<ModifyPackage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/all-bookings" element={<ClientBookings />} />
+          <Route path="/revenue-reports" element={<RevenueReports />} />
+          <Route path="/my-bookings" element={<MyBookings />} />
+          <Route path="/custom-package" element={<CustomPackage />} />
         </Route>
       </Routes>
       <ToastContainer

@@ -41,12 +41,6 @@ const BookingItem = ({ data }) => {
 
   const rows = data.map((item) => {
     const id = `${item.userName}+${item.packageId}`;
-    // dispatch(
-    //   setBookingChartData({
-    //     packageId: item.packageId,
-    //     packageName: item.packageName,
-    //   })
-    // );
     return (
       <Fragment key={id}>
         <tr>

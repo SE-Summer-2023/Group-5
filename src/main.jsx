@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import ReactDOM from "react-dom/client";
 import { MantineProvider } from "@mantine/core";
 import { BrowserRouter } from "react-router-dom";
@@ -11,15 +11,15 @@ import { persistedStore } from "./store/store.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistedStore}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </PersistGate>
-      </Provider>
-    </MantineProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <MantineProvider withGlobalStyles withNormalizeCSS>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistedStore}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
+  </MantineProvider>
+  // </React.StrictMode>
 );
