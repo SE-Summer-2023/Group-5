@@ -20,22 +20,17 @@ const deleteBookingItem = (bookings, itemToDelete) => {
   return newArr;
 };
 
-const deleteUserBookingItem = (bookings, itemToDelete) => {
-  const boookings = current(bookings);
-  const newArr = boookings.map((booking) => {
-    const newBook = Object.values(booking);
-    const filterBook = newBook.filter((item) => {
-      if (
-        item.packageId === itemToDelete.packageId &&
-        item.userId === itemToDelete.userId
-      ) {
-        return false;
-      } else {
-        return true;
-      }
-    });
-    const newObj = Object.assign({}, filterBook);
-    return newObj;
+const deleteUserBookingItem = (currBookings, itemToDelete) => {
+  const bookings = current(currBookings);
+  const newArr = bookings.filter((booking) => {
+    if (
+      booking.packageId === itemToDelete.packageId &&
+      booking.userId === itemToDelete.userId
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   });
   return newArr;
 };
