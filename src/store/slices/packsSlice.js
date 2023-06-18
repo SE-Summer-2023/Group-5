@@ -40,6 +40,21 @@ const deleteUserBookingItem = (bookings, itemToDelete) => {
   return newArr;
 };
 
+const modifyUserBooking = (currBookings, itemToModify, date) => {
+  const bookings = current(currBookings);
+  const newArr = bookings.map((booking) => {
+    if (
+      booking.packageId === itemToModify.packageId &&
+      booking.userId === itemToModify.userId
+    ) {
+      return { ...booking, bookDate: date };
+    } else {
+      return { ...booking };
+    }
+  });
+  return newArr;
+};
+
 const modifyBookingItem = (bookings, itemToModify, date) => {
   const boookings = current(bookings);
   const newArr = boookings.map((booking) => {
@@ -89,13 +104,20 @@ const packsSlice = createSlice({
       );
       return { ...state, currentUserBookings: newUserBookings };
     },
+    modifyItemFromUserBookings: (state, action) => {
+      const newBookings = modifyUserBooking(
+        state.currentUserBookings,
+        action.payload[0],
+        action.payload[1]
+      );
+      return { ...state, currentUserBookings: newBookings };
+    },
     modifyItemFromBookings: (state, action) => {
       const newBookings = modifyBookingItem(
         state.bookings,
         action.payload[0],
         action.payload[1]
       );
-      console.log(newBookings);
       return { ...state, bookings: newBookings };
     },
     setBookingChartData: (state, action) => {
@@ -116,6 +138,7 @@ export const {
   deleteItemFromBookings,
   deleteItemFromUserBookings,
   modifyItemFromBookings,
+  modifyItemFromUserBookings,
   setBookingChartData,
   setBookingRevenueData,
   setCurrentUserBookings,

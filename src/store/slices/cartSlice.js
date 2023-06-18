@@ -14,6 +14,7 @@ const initialState = {
   cartItems: [],
   cartCount: 0,
   cartTotal: 0,
+  clientSecret: "",
 };
 
 const cartSlice = createSlice({
@@ -34,6 +35,9 @@ const cartSlice = createSlice({
     setCartTotal(state, action) {
       return { ...state, cartTotal: action.payload };
     },
+    setClientSecret(state, action) {
+      return { ...state, clientSecret: action.payload };
+    },
     reset() {
       return { ...initialState };
     },
@@ -46,5 +50,6 @@ export const {
   deleteItemFromCart,
   setCartCount,
   setCartTotal,
+  setClientSecret,
   reset,
 } = cartSlice.actions;

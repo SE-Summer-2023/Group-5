@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from "react"; //useState
 import {
   Container,
   Text,
@@ -8,9 +8,9 @@ import {
   Button,
 } from "@mantine/core";
 import { useSelector, useDispatch } from "react-redux";
-import { setCartTotal, reset } from "../../store/slices/cartSlice";
+import { setCartTotal } from "../../store/slices/cartSlice";
 import CartItem from "../../components/cartItem/CartItem";
-import { createUserBooking } from "../../utils/firebase";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -64,9 +64,7 @@ const Cart = () => {
 
   const handleBook = async () => {
     if (user !== null) {
-      const bookingInfo = { ...cartItems };
-      await createUserBooking(bookingInfo, user.id);
-      dispatch(reset());
+      navigate("/checkout");
     } else {
       toast.info("You need to login first");
       navigate("/auth");

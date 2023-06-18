@@ -79,19 +79,23 @@ const PackageCard = ({ packageInfo }) => {
     const dateString = date.toDateString();
     const presentIds = cartItems.map((item) => item.packageId);
     if (!presentIds.includes(packageInfo.packageId)) {
-      const cartItem = {
-        packageName: packageName,
-        packageId: packageId,
-        packagePrice: packagePrice,
-        country: country,
-        bookDate: dateString,
-        userEmail: user.email,
-        userName: user.name,
-        userId: user.id,
-      };
-      dispatch(addItemToCart(cartItem));
-      toast.success("Package added to cart");
-      close();
+      if (user !== null) {
+        const cartItem = {
+          packageName: packageName,
+          packageId: packageId,
+          packagePrice: packagePrice,
+          country: country,
+          bookDate: dateString,
+          userEmail: user.email,
+          userName: user.name,
+          userId: user.id,
+        };
+        dispatch(addItemToCart(cartItem));
+        toast.success("Package added to cart");
+        close();
+      } else {
+        toast.error("Login to continue");
+      }
     } else {
       toast.error("Package already added to cart");
     }

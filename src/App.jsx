@@ -26,6 +26,8 @@ import RevenueReports from "./routes/revenueReports/RevenueReports";
 import MyBookings from "./routes/myBookings/MyBookings";
 import CustomPackage from "./routes/customPackage/CustomPackage";
 import Cart from "./routes/cart/Cart";
+import Checkout from "./routes/checkout/Checkout";
+import BookSuccess from "./routes/bookSuccess/BookSuccess";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,7 +62,6 @@ const App = () => {
     });
     return unsubscribe;
   });
-
   return (
     <>
       <Routes>
@@ -75,6 +76,8 @@ const App = () => {
           <Route path="/revenue-reports" element={<RevenueReports />} />
           <Route path="/my-bookings" element={<MyBookings />} />
           <Route path="/custom-package" element={<CustomPackage />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-success" element={<BookSuccess />} />
         </Route>
       </Routes>
       <ToastContainer

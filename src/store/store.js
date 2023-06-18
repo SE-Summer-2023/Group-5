@@ -11,9 +11,9 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import packsSlice from "./slices/packsSlice";
-import userSlice from "./slices/userSlice";
-import cartSlice from "./slices/cartSlice";
+import packsSlice from "./slices/packsSlice.js";
+import userSlice from "./slices/userSlice.js";
+import cartSlice from "./slices/cartSlice.js";
 
 const persistConfig = {
   key: "root",

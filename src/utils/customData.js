@@ -71,90 +71,57 @@ const getHotelsData = (city) => {
   switch (city) {
     case "LAS":
       return [
-        { value: "Freehand Los Angeles", label: "Freehand Los Angeles" },
-        { value: "Bitmore Los Angeles", label: "Bitmore Los Angeles" },
-        { value: "Freehand Los Angeles", label: "Freehand Los Angeles" },
+        { value: "Hotel1", label: "Hotel1" },
+        { value: "Hotel2", label: "Hotel2" },
+        { value: "Hotel3", label: "Hotel3" },
       ];
     case "JFK":
       return [
-        {
-          value: "Hilton New York Times Square",
-          label: "Hilton New York Times Square",
-        },
-        {
-          value: "Cachet Boutique Hotel NYC",
-          label: "Cachet Boutique Hotel NYC",
-        },
-        { value: "The Millenium Hotel", label: "The Millenium Hotel" },
+        { value: "Hotel1", label: "Hotel1" },
+        { value: "Hotel2", label: "Hotel2" },
+        { value: "Hotel3", label: "Hotel3" },
       ];
     case "ORD":
       return [
-        {
-          value: "Chicago Lake Shore Hotel",
-          label: "Chicago Lake Shore Hotel",
-        },
-        {
-          value: "The Godfrey Hotel Chicago",
-          label: "The Godfrey Hotel Chicago",
-        },
-        { value: "Central Loop Hotel", label: "Central Loop Hotel" },
+        { value: "Hotel1", label: "Hotel1" },
+        { value: "Hotel2", label: "Hotel2" },
+        { value: "Hotel3", label: "Hotel3" },
       ];
     case "YEG":
       return [
-        {
-          value: "Fairmont Hotel Macdonald",
-          label: "Fairmont Hotel Macdonald",
-        },
-        { value: "Fantasyland Hotel", label: "Fantasyland Hotel" },
-        { value: "Element Edmonton West", label: "Element Edmonton West" },
+        { value: "Hotel1", label: "Hotel1" },
+        { value: "Hotel2", label: "Hotel2" },
+        { value: "Hotel3", label: "Hotel3" },
       ];
     case "YYZ":
       return [
-        {
-          value: "Toronto Don Valley Hotel",
-          label: "Toronto Don Valley Hotel",
-        },
-        {
-          value: "The Westin Harbour Castle",
-          label: "The Westin Harbour Castle",
-        },
-        {
-          value: "Sheraton Centre Toronto Hotel",
-          label: "Sheraton Centre Toronto Hotel",
-        },
+        { value: "Hotel1", label: "Hotel1" },
+        { value: "Hotel2", label: "Hotel2" },
+        { value: "Hotel3", label: "Hotel3" },
       ];
     case "YVR":
       return [
-        { value: "Pan Pacific Vancouver", label: "Pan Pacific Vancouver" },
-        {
-          value: "River Rock Casino Resort",
-          label: "River Rock Casino Resort",
-        },
-        { value: "Fairmont Waterfront", label: "Fairmont Waterfront" },
+        { value: "Hotel1", label: "Hotel1" },
+        { value: "Hotel2", label: "Hotel2" },
+        { value: "Hotel3", label: "Hotel3" },
       ];
     case "YXX":
       return [
-        {
-          value: "Rowenas Inn on the River",
-          label: "Rowenas Inn on the River",
-        },
-        { value: "Sasquatch Inn", label: "Sasquatch Inn" },
-        {
-          value: "Hampton Inn by Hilton Chilliwack",
-          label: "Hampton Inn by Hilton Chilliwack",
-        },
+        { value: "Hotel1", label: "Hotel1" },
+        { value: "Hotel2", label: "Hotel2" },
+        { value: "Hotel3", label: "Hotel3" },
       ];
     case "CRK":
       return [
-        { value: "Prime Asia Hotel", label: "Prime Asia Hotel" },
-        { value: "ABC Hotel", label: "ABC Hotel" },
-        { value: "Clarkton Hotel", label: "Clarkton Hotel" },
+        { value: "Hotel1", label: "Hotel1" },
+        { value: "Hotel2", label: "Hotel2" },
+        { value: "Hotel3", label: "Hotel3" },
       ];
     case "AAE":
       return [
-        { value: "Sheraton Annaba Hotel", label: "Sheraton Annaba Hotel" },
-        { value: "Hotel EI Mountazah", label: "Hotel EI Mountazah" },
-        { value: "Hotel Le Majestic", label: "Hotel Le Majestic" },
+        { value: "Hotel1", label: "Hotel1" },
+        { value: "Hotel2", label: "Hotel2" },
+        { value: "Hotel3", label: "Hotel3" },
       ];
   }
 };
