@@ -28,6 +28,14 @@ const BookingItem = ({ data }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const deleteItemHandler = async (item) => {
     await deleteUserBooking(item.userId, item.packageId);
+    // const notificationString = `The Agent cancelled your booking of the ${item.packageName} package`
+    // const notificationObj = {
+    //   message: notificationString,
+    //   userId: item.userId,
+    //   type: 'user',
+    //   read: false
+    // }
+    // await setNotification(notificationObj, item.userId)
     dispatch(deleteItemFromBookings(item));
   };
   const modifyItemHandler = async (item) => {

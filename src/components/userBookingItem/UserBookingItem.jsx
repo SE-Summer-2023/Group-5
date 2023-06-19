@@ -23,7 +23,6 @@ import { IconTrash, IconPencil } from "@tabler/icons-react";
 import { DatePicker } from "@mantine/dates";
 
 const UserBookingItem = ({ data }) => {
-  console.log(data);
   const dispatch = useDispatch();
   const [dateValue, setDateValue] = useState(null);
   const [opened, { open, close }] = useDisclosure(false);
@@ -69,10 +68,11 @@ const UserBookingItem = ({ data }) => {
           opened={opened}
           onClose={close}
           centered
+          key={id}
           scrollAreaComponent={ScrollArea.Autosize}
           title="Change Booking Date"
           overlayProps={{
-            opacity: 0.55,
+            opacity: 0.2,
             blur: 3,
           }}
         >

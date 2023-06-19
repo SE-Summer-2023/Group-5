@@ -216,39 +216,63 @@ const Navbar = () => {
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
 
-          <Link to={"/"} className={classes.link}>
+          <Link to={"/"} className={classes.link} onClick={closeDrawer}>
             Home
           </Link>
 
-          <Link to={"/packages"} className={classes.link}>
+          <Link to={"/packages"} className={classes.link} onClick={closeDrawer}>
             Packages
           </Link>
           {user !== null && user.userType === "Agent" ? (
             <>
-              <Link to={"/all-bookings"} className={classes.link}>
+              <Link
+                to={"/all-bookings"}
+                className={classes.link}
+                onClick={closeDrawer}
+              >
                 Client Bookings
               </Link>
 
-              <Link to={"/create-package"} className={classes.link}>
+              <Link
+                to={"/create-package"}
+                className={classes.link}
+                onClick={closeDrawer}
+              >
                 Create Package
               </Link>
 
-              <Link to={"/modify-package"} className={classes.link}>
+              <Link
+                to={"/modify-package"}
+                className={classes.link}
+                onClick={closeDrawer}
+              >
                 Modify Package
               </Link>
 
-              <Link to={"/revenue-reports"} className={classes.link}>
+              <Link
+                to={"/revenue-reports"}
+                className={classes.link}
+                onClick={closeDrawer}
+              >
                 Revenue Reports
               </Link>
             </>
           ) : (
             <>
-              <Link to={"/custom-package"} className={classes.link}>
+              <Link
+                to={"/custom-package"}
+                className={classes.link}
+                onClick={closeDrawer}
+              >
                 Create Custom Package
               </Link>
 
               {user && (
-                <Link to={"/my-bookings"} className={classes.link}>
+                <Link
+                  to={"/my-bookings"}
+                  className={classes.link}
+                  onClick={closeDrawer}
+                >
                   My Bookings
                 </Link>
               )}

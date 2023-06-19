@@ -90,109 +90,147 @@ const CustomPackage = () => {
         <Title>Create Custom Package</Title>
         <Center>
           <Paper shadow="md" withBorder radius="md" p="xl" w="75%" mt={rem(40)}>
-            <Checkbox.Group
-              onChange={setOptionsSelected}
-              value={optionsSelected}
-              label="Select what to include in your custom package"
-              description="Your options are limited, we are working on providing better customized package options"
-            >
-              <Group mt="sm" spacing={rem(30)}>
-                <Group>
-                  <Checkbox
-                    value="flight"
-                    label="Flights"
-                    icon={FlightIcon}
-                    indeterminate
-                  />
-                  <Badge>+ $120</Badge>
+            <Container fluid>
+              <Checkbox.Group
+                onChange={setOptionsSelected}
+                value={optionsSelected}
+                label="Select what to include in your custom package"
+                description="Your options are limited, we are working on providing better customized package options"
+              >
+                <Group mt="sm" spacing={rem(30)}>
+                  <Group>
+                    <Checkbox
+                      value="flight"
+                      label="Flights"
+                      icon={FlightIcon}
+                      indeterminate
+                    />
+                    <Badge>+ $120</Badge>
+                  </Group>
+                  <Group>
+                    <Checkbox
+                      value="hotel"
+                      label="Hotels"
+                      icon={HotelIcon}
+                      indeterminate
+                    />
+                    <Badge>+ $200</Badge>
+                  </Group>
+                  <Group>
+                    <Checkbox
+                      value="activities"
+                      label="Activities"
+                      icon={ActivityIcon}
+                      indeterminate
+                    />
+                    <Badge>+ $75 per activity</Badge>
+                  </Group>
                 </Group>
-                <Group>
-                  <Checkbox
-                    value="hotel"
-                    label="Hotels"
-                    icon={HotelIcon}
-                    indeterminate
-                  />
-                  <Badge>+ $200</Badge>
-                </Group>
-                <Group>
-                  <Checkbox
-                    value="activities"
-                    label="Activities"
-                    icon={ActivityIcon}
-                    indeterminate
-                  />
-                  <Badge>+ $75 per activity</Badge>
-                </Group>
-              </Group>
-            </Checkbox.Group>
-            <Select
-              value={countrySelected}
-              placeholder="Pick one"
-              data={getData("destination")}
-              onChange={setCountrySelected}
-              label="Select your destination"
-              mt={rem(20)}
-            />
-            <Select
-              value={countryFrom}
-              placeholder="Pick one"
-              data={getData("departure")}
-              onChange={setCountryFrom}
-              label="Select your departure country"
-              mt={rem(20)}
-            />
-            {optionsSelected.includes("flight") ? (
+              </Checkbox.Group>
+            </Container>
+            <Container fluid>
               <Select
-                value={flight}
+                value={countrySelected}
                 placeholder="Pick one"
-                data={getData("flights", countryFrom, countrySelected)}
-                onChange={setFlight}
-                label="Select your flight"
+                data={getData("destination")}
+                onChange={setCountrySelected}
+                label="Select your destination"
                 mt={rem(20)}
               />
+            </Container>
+            <Container fluid>
+              <Select
+                value={countryFrom}
+                placeholder="Pick one"
+                data={getData("departure")}
+                onChange={setCountryFrom}
+                label="Select your departure country"
+                mt={rem(20)}
+              />
+            </Container>
+            {optionsSelected.includes("flight") ? (
+              <Container>
+                {countrySelected.length !== 0 && countryFrom.length !== 0 ? (
+                  <Select
+                    value={flight}
+                    placeholder="Pick one"
+                    data={getData("flights", countryFrom, countrySelected)}
+                    onChange={setFlight}
+                    label="Select your flight"
+                    mt={rem(20)}
+                  />
+                ) : (
+                  <Select
+                    data={["1", "2"]}
+                    value={""}
+                    placeholder="Pick one"
+                    label="Select your flight"
+                    mt={rem(20)}
+                    error={"Select destination/departure first"}
+                    disabled
+                  />
+                )}
+              </Container>
             ) : (
               ""
             )}
             {optionsSelected.includes("hotel") ? (
-              <Select
-                data={getData("hotels", "", countrySelected)}
-                value={hotel}
-                placeholder="Pick one"
-                onChange={setHotel}
-                label="Select your hotel"
-                mt={rem(20)}
-              />
+              <Container fluid>
+                {countrySelected.length !== 0 ? (
+                  <Select
+                    data={getData("hotels", "", countrySelected)}
+                    value={hotel}
+                    placeholder="Pick one"
+                    onChange={setHotel}
+                    label="Select your hotel"
+                    mt={rem(20)}
+                  />
+                ) : (
+                  <Select
+                    data={["1", "2"]}
+                    value={""}
+                    placeholder="Pick one"
+                    label="Select your hotel"
+                    mt={rem(20)}
+                    error={"Select destination first"}
+                    disabled
+                  />
+                )}
+              </Container>
             ) : (
               ""
             )}
             {optionsSelected.includes("activities") ? (
-              <MultiSelect
-                data={getData("activities")}
-                placeholder="Pick your choice"
-                onChange={setActivities}
-                value={activities}
-                label="Select activities"
-                mt={rem(20)}
-              />
+              <Container fluid>
+                <MultiSelect
+                  data={getData("activities")}
+                  placeholder="Pick your choice"
+                  onChange={setActivities}
+                  value={activities}
+                  label="Select activities"
+                  mt={rem(20)}
+                />
+              </Container>
             ) : (
               ""
             )}
-            <DateInput
-              icon={<IconCalendar size="1.1rem" stroke={1.5} />}
-              allowDeselect
-              value={dateValue}
-              onChange={setDateValue}
-              label="Select your date"
-              placeholder="Date input"
-              mx="auto"
-              mt={rem(20)}
-            />
-            <Group>
+            <Container fluid>
+              <DateInput
+                icon={<IconCalendar size="1.1rem" stroke={1.5} />}
+                allowDeselect
+                value={dateValue}
+                onChange={setDateValue}
+                label="Select your date"
+                placeholder="Date input"
+                mx="auto"
+                mt={rem(20)}
+              />
+            </Container>
+            <Container fluid>
               <Button radius="md" mt={rem(20)} fullWidth onClick={handleOpen}>
                 Get Quote
               </Button>
-            </Group>
+            </Container>
           </Paper>
         </Center>
       </Container>

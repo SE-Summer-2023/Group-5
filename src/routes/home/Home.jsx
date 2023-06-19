@@ -10,6 +10,9 @@ import {
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setAllPacks } from "../../store/slices/packsSlice";
+import FeaturesGrid from "../../components/features/Features";
+import ContactForm from "../../components/contactForm/ContactForm";
+import Footer from "../../components/footer/Footer";
 import AllPackages from "../../utils/packages";
 
 const useStyles = createStyles((theme) => ({
@@ -93,44 +96,49 @@ const Home = () => {
   });
   const { classes } = useStyles();
   return (
-    <div className={classes.root}>
-      <Container size="lg">
-        <div className={classes.inner}>
-          <div className={classes.content}>
-            <Title className={classes.title}>
-              Welcome to{" "}
-              <Text
-                component="span"
-                inherit
-                variant="gradient"
-                gradient={{ from: "pink", to: "yellow" }}
-              >
-                Concordia Travel
-              </Text>{" "}
-              Application
-            </Title>
+    <>
+      <div className={classes.root}>
+        <Container size="lg">
+          <div className={classes.inner}>
+            <div className={classes.content}>
+              <Title className={classes.title}>
+                Welcome to{" "}
+                <Text
+                  component="span"
+                  inherit
+                  variant="gradient"
+                  gradient={{ from: "pink", to: "yellow" }}
+                >
+                  Concordia Travel
+                </Text>{" "}
+                Application
+              </Title>
 
-            <Text className={classes.description} mt={30}>
-              A travel application to browse and book touristic packages – Users
-              can create their own package, Agent can cancel and modify the user
-              bookings
-            </Text>
+              <Text className={classes.description} mt={30}>
+                A travel application to browse and book touristic packages –
+                Users can create their own package, Agent can cancel and modify
+                the user bookings
+              </Text>
 
-            <Link to={"/packages"}>
-              <Button
-                variant="gradient"
-                gradient={{ from: "pink", to: "yellow" }}
-                size="xl"
-                className={classes.control}
-                mt={40}
-              >
-                View Packages
-              </Button>
-            </Link>
+              <Link to={"/packages"}>
+                <Button
+                  variant="gradient"
+                  gradient={{ from: "pink", to: "yellow" }}
+                  size="xl"
+                  className={classes.control}
+                  mt={40}
+                >
+                  View Packages
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </Container>
-    </div>
+        </Container>
+      </div>
+      <FeaturesGrid />
+      <ContactForm />
+      <Footer />
+    </>
   );
 };
 

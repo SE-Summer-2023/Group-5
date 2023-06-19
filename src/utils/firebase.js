@@ -30,6 +30,32 @@ const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 
+export const setNotification = async (notificationObj, uid) => {
+  const notificationRef = doc(db, "notifications", uid);
+  const notificationSnapshot = await getDoc(notificationRef);
+  if (notificationSnapshot.data() === undefined) {
+    try {
+      await setDoc(notificationRef, notificationObj);
+    } catch (error) {
+      console.log(error);
+    }
+  } else if (notificationSnapshot.exists()) {
+    try {
+      await updateDoc(notificationRef, notificationObj);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
+export const getNotifications = async (uid) => {
+  const notificationRef = doc(db, "notifications", uid);
+  const notificationSnapshot = await getDoc(notificationRef);
+  if (notificationSnapshot.exists()) {
+    const notifyData = { ...notificationSnapshot.data() };
+    return notifyData;
+  }
+};
+
 export const createUserBooking = async (bookingInfo, userId) => {
   const bookingDocRef = doc(db, "bookings", userId);
   const bookingSnapshot = await getDoc(bookingDocRef);
