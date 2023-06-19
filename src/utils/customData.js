@@ -71,57 +71,90 @@ const getHotelsData = (city) => {
   switch (city) {
     case "LAS":
       return [
-        { value: "Hotel1", label: "Hotel1" },
-        { value: "Hotel2", label: "Hotel2" },
-        { value: "Hotel3", label: "Hotel3" },
+        { value: "Freehand Los Angeles", label: "Freehand Los Angeles" },
+        { value: "Bitmore Los Angeles", label: "Bitmore Los Angeles" },
+        { value: "The Ritz-Carlton", label: "The Ritz-Carlton" },
       ];
     case "JFK":
       return [
-        { value: "Hotel1", label: "Hotel1" },
-        { value: "Hotel2", label: "Hotel2" },
-        { value: "Hotel3", label: "Hotel3" },
+        {
+          value: "Hilton New York Times Square",
+          label: "Hilton New York Times Square",
+        },
+        {
+          value: "Cachet Boutique Hotel NYC",
+          label: "Cachet Boutique Hotel NYC",
+        },
+        { value: "The Millenium Hotel", label: "The Millenium Hotel" },
       ];
     case "ORD":
       return [
-        { value: "Hotel1", label: "Hotel1" },
-        { value: "Hotel2", label: "Hotel2" },
-        { value: "Hotel3", label: "Hotel3" },
+        {
+          value: "Chicago Lake Shore Hotel",
+          label: "Chicago Lake Shore Hotel",
+        },
+        {
+          value: "The Godfrey Hotel Chicago",
+          label: "The Godfrey Hotel Chicago",
+        },
+        { value: "Central Loop Hotel", label: "Central Loop Hotel" },
       ];
     case "YEG":
       return [
-        { value: "Hotel1", label: "Hotel1" },
-        { value: "Hotel2", label: "Hotel2" },
-        { value: "Hotel3", label: "Hotel3" },
+        {
+          value: "Fairmont Hotel Macdonald",
+          label: "Fairmont Hotel Macdonald",
+        },
+        { value: "Fantasyland Hotel", label: "Fantasyland Hotel" },
+        { value: "Element Edmonton West", label: "Element Edmonton West" },
       ];
     case "YYZ":
       return [
-        { value: "Hotel1", label: "Hotel1" },
-        { value: "Hotel2", label: "Hotel2" },
-        { value: "Hotel3", label: "Hotel3" },
+        {
+          value: "Toronto Don Valley Hotel",
+          label: "Toronto Don Valley Hotel",
+        },
+        {
+          value: "The Westin Harbour Castle",
+          label: "The Westin Harbour Castle",
+        },
+        {
+          value: "Sheraton Centre Toronto Hotel",
+          label: "Sheraton Centre Toronto Hotel",
+        },
       ];
     case "YVR":
       return [
-        { value: "Hotel1", label: "Hotel1" },
-        { value: "Hotel2", label: "Hotel2" },
-        { value: "Hotel3", label: "Hotel3" },
+        { value: "Pan Pacific Vancouver", label: "Pan Pacific Vancouver" },
+        {
+          value: "River Rock Casino Resort",
+          label: "River Rock Casino Resort",
+        },
+        { value: "Fairmont Waterfront", label: "Fairmont Waterfront" },
       ];
     case "YXX":
       return [
-        { value: "Hotel1", label: "Hotel1" },
-        { value: "Hotel2", label: "Hotel2" },
-        { value: "Hotel3", label: "Hotel3" },
+        {
+          value: "Rowena's Inn on the River",
+          label: "Rowena's Inn on the River",
+        },
+        { value: "Sasquatch Inn", label: "Sasquatch Inn" },
+        {
+          value: "Hampton Inn by Hilton Chilliwack",
+          label: "Hampton Inn by Hilton Chilliwack",
+        },
       ];
     case "CRK":
       return [
-        { value: "Hotel1", label: "Hotel1" },
-        { value: "Hotel2", label: "Hotel2" },
-        { value: "Hotel3", label: "Hotel3" },
+        { value: "Prime Asia Hotel", label: "Prime Asia Hotel" },
+        { value: "ABC Hotel", label: "ABC Hotel" },
+        { value: "Clarkton Hotel", label: "Clarkton Hotel" },
       ];
     case "AAE":
       return [
-        { value: "Hotel1", label: "Hotel1" },
-        { value: "Hotel2", label: "Hotel2" },
-        { value: "Hotel3", label: "Hotel3" },
+        { value: "Sheraton Annaba Hotel", label: "Sheraton Annaba Hotel" },
+        { value: "Hotel EI Mountazah", label: "Hotel EI Mountazah" },
+        { value: "Hotel Le Majestic", label: "Hotel Le Majestic" },
       ];
   }
 };
