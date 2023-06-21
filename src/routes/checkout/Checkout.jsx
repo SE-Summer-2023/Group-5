@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container } from "@mantine/core";
+import { Center, Container, Loader, rem } from "@mantine/core";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSelector } from "react-redux";
@@ -34,10 +34,14 @@ const Checkout = () => {
   }, [cartTotal]);
   return (
     <Container>
-      {clientSecret && stripePromise && (
+      {clientSecret && stripePromise ? (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <PaymentForm />
         </Elements>
+      ) : (
+        <Center mt={rem(52)}>
+          <Loader />
+        </Center>
       )}
     </Container>
   );
