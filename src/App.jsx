@@ -58,14 +58,21 @@ const App = () => {
             : "";
         }
         dispatch(setCurrentUser({ name, email, userType, id }));
-        const packs = await getAllPackages();
-        dispatch(setAllPacks(packs));
       } else {
         dispatch(setCurrentUser(null));
       }
     });
     return unsubscribe;
   });
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      const packs = await getAllPackages();
+      dispatch(setAllPacks(packs));
+    };
+    fetchPackages();
+  }, [dispatch]);
+  
   return (
     <>
       <Routes>
