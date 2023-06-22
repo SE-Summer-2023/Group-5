@@ -30,29 +30,33 @@ const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
 
-export const setNotification = async (notificationObj, uid) => {
-  const notificationRef = doc(db, "notifications", uid);
-  const notificationSnapshot = await getDoc(notificationRef);
-  if (notificationSnapshot.data() === undefined) {
-    try {
-      await setDoc(notificationRef, notificationObj);
-    } catch (error) {
-      console.log(error);
-    }
-  } else if (notificationSnapshot.exists()) {
-    try {
-      await updateDoc(notificationRef, notificationObj);
-    } catch (error) {
-      console.log(error);
-    }
+export const getAllPackages = async () => {
+  const ref = doc(db, "packages", "all");
+  const snapshot = await getDoc(ref);
+  if (snapshot.exists()) {
+    const data = { ...snapshot.data() };
+    return data;
   }
 };
-export const getNotifications = async (uid) => {
-  const notificationRef = doc(db, "notifications", uid);
-  const notificationSnapshot = await getDoc(notificationRef);
-  if (notificationSnapshot.exists()) {
-    const notifyData = { ...notificationSnapshot.data() };
-    return notifyData;
+
+export const deletePackage = async (packageId) => {
+  const ref = doc(db, "packages", "all");
+  await updateDoc(ref, {
+    [`${packageId}`]: deleteField(),
+  });
+};
+
+export const addPackage = async (packageInfo) => {
+  const ref = doc(db, "packages", "all");
+  const snapshot = await getDoc(ref);
+  if (snapshot.exists()) {
+    await updateDoc(ref, {
+      [`${packageInfo.packageId}`]: packageInfo,
+    });
+  } else if (snapshot.data() === undefined) {
+    await setDoc(ref, {
+      [`${packageInfo.packageId}`]: packageInfo,
+    });
   }
 };
 

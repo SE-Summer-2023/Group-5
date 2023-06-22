@@ -35,6 +35,16 @@ const deleteUserBookingItem = (currBookings, itemToDelete) => {
   return newArr;
 };
 
+const deletePackage = (allPacks, packageId) => {
+  const packs = current(allPacks);
+  const allPackss = Object.values(packs);
+  const newPacks = allPackss.filter((pack) => {
+    if (pack.packageId === packageId) return false;
+    else return true;
+  });
+  return newPacks;
+};
+
 const modifyUserBooking = (currBookings, itemToModify, date) => {
   const bookings = current(currBookings);
   const newArr = bookings.map((booking) => {
@@ -99,6 +109,10 @@ const packsSlice = createSlice({
       );
       return { ...state, currentUserBookings: newUserBookings };
     },
+    deleteItemFromPackage: (state, action) => {
+      const newPackages = deletePackage(state.allPacks, action.payload);
+      return { ...state, allPacks: newPackages };
+    },
     modifyItemFromUserBookings: (state, action) => {
       const newBookings = modifyUserBooking(
         state.currentUserBookings,
@@ -132,6 +146,7 @@ export const {
   setAllBookings,
   deleteItemFromBookings,
   deleteItemFromUserBookings,
+  deleteItemFromPackage,
   modifyItemFromBookings,
   modifyItemFromUserBookings,
   setBookingChartData,

@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAllPacks } from "../../store/slices/packsSlice";
-import { FilterPackages } from "../../utils/packagesOp";
-
+import { addPackage } from "../../utils/firebase";
 import { useForm } from "@mantine/form";
 import {
   TextInput,
@@ -13,36 +12,35 @@ import {
   Container,
   Stack,
 } from "@mantine/core";
+import { toast } from "react-toastify";
 
 const PackageForm = ({ type }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { allPacks } = useSelector((state) => state.allpacks);
+  const allPackages = Object.values(allPacks);
 
-  const packIds = allPacks.map((pack) => {
+  const packIds = allPackages.map((pack) => {
     if (pack !== null) return pack.packageId;
   });
 
-  const setNewPack = (filteredPack, packDetails) => {
-    const newPack = [...filteredPack, packDetails];
-    console.log(newPack);
-    dispatch(setAllPacks(newPack));
-    navigate("/packages");
-  };
-
-  const handlePackageForm = (packDetails) => {
+  const handlePackageForm = async (packDetails) => {
     if (type === "Create") {
-      const newPack = [...allPacks, packDetails];
+      const newPack = [...allPackages, packDetails];
+      await addPackage(packDetails);
       dispatch(setAllPacks(newPack));
+      toast.success("Package Added!");
       navigate("/packages");
     } else if (type === "Modify") {
-      console.log(packIds);
       if (packIds.includes(packDetails.packageId)) {
-        const prevPack = allPacks.filter(
-          (pack) => pack.packageId === packDetails.packageId
+        const filteredPack = allPackages.filter(
+          (pack) => pack.packageId !== packDetails.packageId
         );
-        const filteredPack = FilterPackages(allPacks, prevPack[0]);
-        setNewPack(filteredPack, packDetails);
+        const newPack = [...filteredPack, packDetails];
+        await addPackage(packDetails);
+        dispatch(setAllPacks(newPack));
+        toast.success("Package Modified!");
+        navigate("/packages");
       }
     }
   };
@@ -52,6 +50,7 @@ const PackageForm = ({ type }) => {
       packageId: "",
       packageName: "",
       packageDuration: "",
+      packageImage: "",
       flightDetails: "",
       country: "",
       stayDetails: "",
@@ -122,6 +121,16 @@ const PackageForm = ({ type }) => {
               value={form.values.packageDuration}
               onChange={(event) =>
                 form.setFieldValue("packageDuration", event.currentTarget.value)
+              }
+              radius="md"
+              required
+            />
+            <TextInput
+              label="Package Image"
+              placeholder="Enter the package image url"
+              value={form.values.packageImage}
+              onChange={(event) =>
+                form.setFieldValue("packageImage", event.currentTarget.value)
               }
               radius="md"
               required

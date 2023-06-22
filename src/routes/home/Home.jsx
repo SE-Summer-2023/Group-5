@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   createStyles,
   Container,
@@ -8,12 +7,9 @@ import {
   rem,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setAllPacks } from "../../store/slices/packsSlice";
 import FeaturesGrid from "../../components/features/Features";
 import ContactForm from "../../components/contactForm/ContactForm";
 import Footer from "../../components/footer/Footer";
-import AllPackages from "../../utils/packages";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -89,11 +85,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const { allPacks } = useSelector((state) => state.allpacks);
-  useEffect(() => {
-    if (allPacks.length === 0) dispatch(setAllPacks(AllPackages));
-  });
   const { classes } = useStyles();
   return (
     <>

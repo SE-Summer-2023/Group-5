@@ -117,7 +117,12 @@ const Navbar = () => {
             </Link>
 
             {user !== null && user.userType === "Agent" ? (
-              <Menu trigger="hover" openDelay={100} closeDelay={300}>
+              <Menu
+                trigger="hover"
+                openDelay={100}
+                closeDelay={200}
+                closeOnItemClick
+              >
                 <Menu.Target>
                   <Group className={classes.link}>
                     Packages

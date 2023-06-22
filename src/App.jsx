@@ -7,10 +7,12 @@ import {
   onAuthStateChangedListener,
   getUserDocumentFromAuth,
   getUserBookings,
+  getAllPackages,
 } from "./utils/firebase";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./store/slices/userSlice";
 import {
+  setAllPacks,
   setAllBookings,
   setCurrentUserBookings,
 } from "./store/slices/packsSlice";
@@ -56,6 +58,8 @@ const App = () => {
             : "";
         }
         dispatch(setCurrentUser({ name, email, userType, id }));
+        const packs = await getAllPackages();
+        dispatch(setAllPacks(packs));
       } else {
         dispatch(setCurrentUser(null));
       }

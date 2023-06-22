@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { useSelector, useDispatch } from "react-redux";
-import { FilterPackages } from "../../utils/packagesOp";
-import { setAllPacks } from "../../store/slices/packsSlice";
+import { deletePackage } from "../../utils/firebase";
+import { deleteItemFromPackage } from "../../store/slices/packsSlice";
 import { addItemToCart } from "../../store/slices/cartSlice";
 import { toast } from "react-toastify";
 import {
@@ -15,6 +15,7 @@ import {
 import {
   Card,
   Text,
+  Image,
   Group,
   Badge,
   Button,
@@ -56,7 +57,6 @@ const PackageCard = ({ packageInfo }) => {
   const [dateValue, setDateValue] = useState(null);
   const [opened, { open, close }] = useDisclosure(false);
   const user = useSelector((state) => state.user);
-  const { allPacks } = useSelector((state) => state.allpacks);
   const { cartItems } = useSelector((state) => state.cartDetails);
   const dispatch = useDispatch();
   const { classes, theme } = useStyles();
@@ -69,10 +69,12 @@ const PackageCard = ({ packageInfo }) => {
     activities,
     packagePrice,
     packageId,
+    packageImage,
   } = packageInfo;
-  const handleDelete = () => {
-    const packs = FilterPackages(allPacks, packageInfo);
-    dispatch(setAllPacks(packs));
+  const handleDelete = async () => {
+    await deletePackage(packageId);
+    dispatch(deleteItemFromPackage(packageId));
+    toast.success(`Package ${packageId} deleted!`);
   };
   const handleAdd = () => {
     const date = new Date(dateValue);
@@ -116,8 +118,11 @@ const PackageCard = ({ packageInfo }) => {
         radius="md"
         p="md"
         className={classes.card}
-        pt={30}
+        mt={rem(24)}
       >
+        <Card.Section>
+          <Image src={packageImage} height={180} />
+        </Card.Section>
         <Card.Section className={classes.section} mt="md">
           <Group position="apart">
             <IconBeach />

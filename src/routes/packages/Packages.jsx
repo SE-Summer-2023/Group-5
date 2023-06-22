@@ -11,10 +11,11 @@ const Packages = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [filteredPackages, setFilteredPackages] = useState([]);
   const { allPacks } = useSelector((state) => state.allpacks);
+  const allPackages = Object.values(allPacks);
 
   const filterPackages = (text) => {
     const regex = new RegExp(text, "i"); // 'i' flag for case-insensitive search
-    return allPacks.filter(
+    return allPackages.filter(
       (item) =>
         regex.test(item.packageName) ||
         regex.test(item.packagePrice) ||
@@ -49,7 +50,7 @@ const Packages = () => {
           </>
         ) : (
           <>
-            {allPacks.map((item) => (
+            {allPackages.map((item) => (
               <Grid.Col lg={4} md={4} sm={5} key={item.packageId}>
                 <PackageCard packageInfo={item} />
               </Grid.Col>
