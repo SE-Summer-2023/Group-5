@@ -189,6 +189,7 @@ const PackageCard = ({ packageInfo }) => {
         }}
       >
         <Container>
+          <Image src={packageImage} height={180} />
           <Table striped mt={rem(15)}>
             <tbody>
               <tr>
