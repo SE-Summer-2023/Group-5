@@ -299,7 +299,7 @@ const Navbar = () => {
             </Group>
           ) : (
             <Group position="center" grow pb="xl" px="md">
-              <Link to={"/auth"}>
+              <Link to={"/auth"} onClick={closeDrawer}>
                 <Button>Login</Button>
               </Link>
             </Group>
